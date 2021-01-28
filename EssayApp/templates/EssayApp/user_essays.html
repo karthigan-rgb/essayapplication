@@ -1,0 +1,18 @@
+{%extends "EssayApp/base.html"%}
+{%block content%}
+    <h1>Essays by {{view.kwargs.username}}</h1>
+    {%for essay in Essays%}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="{%url 'user-essays' essay.author.username%}">{{ essay.author }}</a>
+                    <small class="text-muted">{{ essay.date_posted }}</small>
+                </div>
+                <h2><a class="article-title" href="{%url 'essay-detail' essay.id%}">{{ essay.title }}</a></h2>
+                <p class="article-content">{{ essay.content }}</p>
+                
+            </div>
+        </article>
+    {%endfor%}
+{%endblock content%}
+   
