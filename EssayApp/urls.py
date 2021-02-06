@@ -10,5 +10,4 @@ urlpatterns = [
     path('essay/<int:pk>/update',EssayUpdateView.as_view(), name ='essay-update'),
     path('MyEssay/', views.MyEssay, name ='EssayApp-MyEssay'),
     path('pdf_view/<int:pk>', views.ViewPDF, name="pdf_view"),
-    path('pdf_download/', views.DownloadPDF.as_view(), name="pdf_download"),
 ]
