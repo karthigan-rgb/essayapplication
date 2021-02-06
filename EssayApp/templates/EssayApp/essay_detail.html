@@ -14,7 +14,6 @@
                 <h2 class="article-title">{{ object.title }}</h2>
                 <p class="article-content">{{ object.content }}</p>
                 <a class="btn btn-info" href="{% url 'pdf_view' object.id%}" target="_blank">View Essay</a>
-                <a class="btn btn-outline-info"  href="{% url 'pdf_download' %}">Download Essay</a>
             </div>
         </article>
 {%endblock content%}
