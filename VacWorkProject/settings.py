@@ -122,5 +122,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL = 'EssayApp-Essays'
+LOGIN_REDIRECT_URL = "essays/"
 LOGIN_URL = 'login'
