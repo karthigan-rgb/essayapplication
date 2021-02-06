@@ -26,16 +26,6 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
-essays =  Essay.objects.get(id = 1)
-essayauthor = essays.author
-essaytitle = essays.title
-essaycontent = essays.content
-data = {
-     "EssayAuthor":essayauthor,
-     "Essaytitle": essaytitle,
-     "Essaycontent":essaycontent
-    }
-
 #Opens up page as PDF
 def ViewPDF(request,pk):
          essays =  Essay.objects.get(id = pk)
@@ -49,24 +39,11 @@ def ViewPDF(request,pk):
             }
          pdf = render_to_pdf('EssayApp/pdf_template.html', data)
          return HttpResponse(pdf, content_type='application/pdf')
-#Automaticly downloads to PDF file
-
-class DownloadPDF(View):
-    def get(self, request, *args, **kwargs):
-        
-        pdf = render_to_pdf('EssayApp/pdf_template.html',data)
-
-        response = HttpResponse(pdf, content_type='application/pdf')
-        filename = "Essay_%s.pdf" %("12341231")
-        content = "attachment; filename='%s'" %(filename)
-        response['Content-Disposition'] = content
-        return response
 
 class EssayListView(ListView):
     model = Essay
     template_name='EssayApp/Essays.html'
     context_object_name = 'Essays'
-    order =['-date_posted']
 
 class UserEssayListView(ListView):
     model = Essay
@@ -75,7 +52,7 @@ class UserEssayListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Essay.objects.filter(author=user).order_by('-date_posted')
+        return Essay.objects.filter(author=user)
 
 class EssayDetailView(DetailView):
     model = Essay
