@@ -1,5 +1,6 @@
 {%extends "EssayApp/base.html"%}
 {%block content%}
+{%if request.user.is_superuser%}
     {%for essay in Essays%}
         <article class="media content-section">
             <div class="media-body">
@@ -13,5 +14,14 @@
             </div>
         </article>
     {%endfor%}
+{%else%}
+ <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="{%url 'user-essays' user.username%}">Show my Essays</a>
+                </div>
+            </div>
+    </article>
+{%endif%}
 {%endblock content%}
    
